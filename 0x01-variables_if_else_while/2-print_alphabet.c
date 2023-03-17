@@ -8,9 +8,16 @@
 
 int main(void)
 {
-	for (int c = (int)'a'; c <= (int)'z'; c++)
+	int c = (int)'a';
+
+	while (c <= (int)'z')
+	{
 		putchar((char)c);
+		c++;
+	}
+
 	putchar((char)10);
 
 	return (0);
 }
+
