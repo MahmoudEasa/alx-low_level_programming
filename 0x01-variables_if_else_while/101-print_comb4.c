@@ -22,7 +22,7 @@ int main(void)
 				putchar((char)count1);
 				putchar((char)count2);
 				putchar((char)count3);
-				if(count1 < count_stop - 2)
+				if (count1 < count_stop - 2)
 				{
 					putchar(',');
 					putchar(' ');
