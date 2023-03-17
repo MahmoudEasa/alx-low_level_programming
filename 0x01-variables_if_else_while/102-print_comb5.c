@@ -8,42 +8,27 @@
 
 int main(void)
 {
-	int count1 = (int)'0';
-	int count2 = count1;
-	int count3 = count1;
-	int count4 = count1 + 1;
-	int count_stop = (int)'9';
+	int count1, count2;
 
-	while (count1 <= count_stop)
+	for (count1 = 0; count1 <= 98; count1++)
 	{
-		while (count2 <= count_stop)
+		for (count2 = count1 + 1; count2 <= 99; count2++)
 		{
-			while (count3 <= count_stop)
-			{
-				while (count4 <= count_stop)
-				{
-					putchar((char)count1);
-					putchar((char)count2);
-					putchar(' ');
-					putchar((char)count3);
-					putchar((char)count4);
-					putchar(',');
-					putchar(' ');
-					count4++;
-				}
-				count3++;
-				count4 = (int)'0';
-			}
-			count2++;
-			count3 = count1;
-			count4 = count2 + 1;
+			putchar((count1 / 10) + '0');
+			putchar((count1 % 10) + '0');
+			putchar(' ');
+			putchar((count2 / 10) + '0');
+			putchar((count2 % 10) + '0');
+
+			if (count1 == 98 && count2 == 99)
+				continue;
+
+			putchar(',');
+			putchar(' ');
 		}
-		count1++;
-		count2 = (int)'0';
-		count3 = count1;
-		count4 = count2 + 1;
 	}
-	putchar((char)10);
+
+	putchar('\n');
 	return (0);
 }
 
