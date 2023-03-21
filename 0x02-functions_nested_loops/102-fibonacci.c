@@ -8,10 +8,10 @@
 
 int main(void)
 {
-	unsigned int num1, num2, temp;
+	long long num1, num2, temp;
 	int i;
 
-	for (i = 1; i < 50; i++)
+	for (i = 1; i <= 50; i++)
 	{
 		if (i > 2)
 		{
@@ -24,8 +24,8 @@ int main(void)
 			num1 = i;
 			num2 = i - 1;
 		}
-		printf("%d", num1);
-		if (i == 49)
+		printf("%lld", num1);
+		if (i == 50)
 			continue;
 		printf(", ");
 	}
