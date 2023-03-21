@@ -24,7 +24,7 @@ int main(void)
 			num1 = i;
 			num2 = i - 1;
 		}
-		printf("%.0lf", num1);
+		printf("%.0f", num1);
 		if (i == 98)
 			continue;
 		printf(", ");
