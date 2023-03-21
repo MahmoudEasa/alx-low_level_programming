@@ -8,7 +8,7 @@
 
 int main(void)
 {
-	double num1, num2, temp;
+	long double num1, num2, temp;
 	int i;
 
 	for (i = 1; i <= 98; i++)
@@ -24,7 +24,7 @@ int main(void)
 			num1 = i;
 			num2 = i - 1;
 		}
-		printf("%.0f", num1);
+		printf("%.0Lf", num1);
 		if (i == 98)
 			continue;
 		printf(", ");
