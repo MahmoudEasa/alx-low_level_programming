@@ -8,7 +8,7 @@
 
 int main(void)
 {
-	long num1, num2, temp;
+	long num1, num2, temp, sum = 0;
 	int i;
 
 	for (i = 1; i <= 89; i++)
@@ -27,13 +27,10 @@ int main(void)
 
 		if (num1 % 2 == 0 && num1 <= 4000000)
 		{
-			printf("%ld", num1);
-			if (num1 >= 3524578)
-				continue;
-			printf(", ");
+			sum += num1;
 		}
 	}
-	printf("\n");
+	printf("%ld\n", sum);
 	return (0);
 }
 
