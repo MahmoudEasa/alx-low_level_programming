@@ -1,4 +1,5 @@
-#include "_putchar.c"
+#include "main.h"
+#include <string.h>
 
 /**
  * main - Entry point
@@ -9,12 +10,14 @@
 int main(void)
 {
 	char *putchar = "_putchar";
-	int size = sizeof(putchar) / sizeof(putchar[1]);
+	char *ptr = putchar;
 	int i;
+	int size = strlen(putchar);
 
 	for (i = 0; i < size; i++)
 	{
-		_putchar(putchar[i]);
+		_putchar(*ptr);
+		ptr++;
 	}
 	_putchar('\n');
 	return (0);
