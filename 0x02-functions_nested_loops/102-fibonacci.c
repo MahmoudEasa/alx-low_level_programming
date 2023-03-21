@@ -8,7 +8,7 @@
 
 int main(void)
 {
-	long long num1, num2, temp;
+	long num1, num2, temp;
 	int i;
 
 	for (i = 1; i <= 50; i++)
@@ -24,7 +24,7 @@ int main(void)
 			num1 = i;
 			num2 = i - 1;
 		}
-		printf("%lld", num1);
+		printf("%ld", num1);
 		if (i == 50)
 			continue;
 		printf(", ");
