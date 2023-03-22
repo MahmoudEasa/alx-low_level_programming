@@ -13,7 +13,7 @@ int main(void)
 	unsigned long h1, h2;
 	int i;
 
-	for (i = 0; i <= 92; i++)
+	for (i = 0; i < 92; i++)
 	{
 		temp = n1 + n2;
 		printf("%lu, ", temp);
@@ -26,7 +26,7 @@ int main(void)
 	n1_h2 = n1 % 10000000000;
 	n2_h2 = n2 % 10000000000;
 
-	for (i = 93; i < 99; i++)
+	for (i = 93; i <= 98; i++)
 	{
 		h1 = n1_h1 + n2_h1;
 		h2 = n1_h2 + n2_h2;
