@@ -14,7 +14,7 @@ int main(void)
 
 	while (n % 2 == 0)
 	{
-		printf("%d\n", 2);
+		printf("%d, ", 2);
 		n = n / 2;
 	}
 
@@ -22,7 +22,7 @@ int main(void)
 	{
 		while (n % i == 0)
 		{
-			printf("%d\n", i);
+			printf("%d, ", i);
 			n = n / i;
 		}
 	}
