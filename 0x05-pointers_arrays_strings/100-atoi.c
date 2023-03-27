@@ -1,4 +1,3 @@
-#include <stdio.h>
 /**
  * _atoi - convert a string to an integer
  * @s: (char) Pointer to string
@@ -9,7 +8,7 @@
 
 int _atoi(char *s)
 {
-	int i = 0, len = 0, negative = 0, num_in_str = 0;
+	unsigned int i = 0, len = 0, negative = 0, num_in_str = 0;
 
 	while (s[i++] != '\0')
 		len++;
