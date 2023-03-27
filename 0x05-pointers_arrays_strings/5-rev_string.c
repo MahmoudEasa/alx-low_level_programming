@@ -2,6 +2,7 @@
 #include <stdio.h>
 
 int _strlen(char *s);
+void swap_char(char *a, char *b);
 
 /**
  * rev_string - reverse a string
@@ -10,21 +11,14 @@ int _strlen(char *s);
 
 void rev_string(char *s)
 {
-	int i, j = 0;
-	int size = _strlen(s);
-	char temp;
+	int i = 0;
+	int length = _strlen(s) - 1;
 
-	for (i = size - 1; i >= 0; i--)
+	while (i < length)
 	{
-		if (j < i)
-		{
-			temp = *(s + j);
-			*(s + j) = *(s + i);
-			*(s + i) = temp;
-			j++;
-		}
-		else
-			break;
+		swap_char(s + length, s + i);
+		i++;
+		length--;
 	}
 }
 
@@ -47,5 +41,19 @@ int _strlen(char *s)
 	}
 
 	return (len);
+}
+
+/**
+ * swap_char - swap to characters
+ * @a: first character
+ * @b: second character
+ */
+
+void swap_char(char *a, char *b)
+{
+	char temp = *a;
+
+	*a = *b;
+	*b = temp;
 }
 
