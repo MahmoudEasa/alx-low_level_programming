@@ -1,8 +1,4 @@
 #include "main.h"
-#include <stdio.h>
-
-int _strlen(char *s);
-void swap_char(char *a, char *b);
 
 /**
  * rev_string - reverse a string
