@@ -13,43 +13,16 @@ int _strlen(char *s);
 
 int _strcmp(char *s1, char *s2)
 {
-	unsigned int i = 0, n1 = 0, n2 = 0, is_strcmp = 0;
-	unsigned int s1_len = _strlen(s1);
-	unsigned int s2_len = _strlen(s2);
+	int i = 0, is_strcmp = 0;
 
-	if (s1_len != s2_len)
-	{
-		while (s1[i++] != '\0')
-			n1 += s1[i];
-
-		i = 0;
-
-		while (s2[i++] != '\0')
-			n2 += s2[i];
-
-		if (n1 < n2)
+		while (!(s1[i] == '\0' || s2[i] == '\0'))
 		{
-			is_strcmp = -15;
-		}
-		else
-			is_strcmp = 15;
-	}
-	else
-	{
-		while (s1[i++] != '\0')
-		{
-			if (s1[i] < s2[i])
-			{
-				is_strcmp = -15;
+			is_strcmp = ((int)s1[i] - (int)s2[i]);
+			if (is_strcmp > 0 || is_strcmp < 0)
 				break;
-			}
-			else if (s1[i] > s2[i])
-			{
-				is_strcmp = 15;
-				break;
-			}
+			i++;
 		}
-	}
+
 
 	return (is_strcmp);
 }
