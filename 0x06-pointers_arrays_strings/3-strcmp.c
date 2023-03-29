@@ -13,30 +13,27 @@ int _strlen(char *s);
 
 int _strcmp(char *s1, char *s2)
 {
-	int i, is_strcmp = 0, s1_len = _strlen(s1), s2_len = _strlen(s2);
+	unsigned int i = 0, n1 = 0, n2 = 0;
 
-	if (s1_len < s2_len)
-		is_strcmp = -15;
-	else if (s1_len > s2_len)
-		is_strcmp = 15;
-	else
+	while (s1[i++] != '\0')
+		n1 += s1[i];
+
+	i = 0;
+
+	while (s2[i++] != '\0')
+		n2 += s2[i];
+
+	if (n1 < n2)
 	{
-		for (i = 0; i < s1_len; i++)
-		{
-			if (s1[i] < s2[i])
-			{
-				is_strcmp = -15;
-				break;
-			}
-			else if (s1[i] > s2[i])
-			{
-				is_strcmp = 15;
-				break;
-			}
-		}
+		return (-15);
 	}
+	else if (n1 > n2)
+	{
+		return (15);
+	}
+	else
+		return (0);
 
-	return (is_strcmp);
 }
 
 /**
