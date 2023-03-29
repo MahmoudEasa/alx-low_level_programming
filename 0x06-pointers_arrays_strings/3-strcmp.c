@@ -1,5 +1,3 @@
-int _strlen(char *s);
-
 /**
  * _strcmp - compares two strings
  * @s1: first string
@@ -25,25 +23,5 @@ int _strcmp(char *s1, char *s2)
 
 
 	return (is_strcmp);
-}
-
-/**
- * _strlen - count length of string
- * @s: string
- *
- * Return: length of s
- */
-
-int _strlen(char *s)
-{
-	char *ptr = s, len = 0;
-
-	while (*ptr != '\0')
-	{
-		len++;
-		ptr++;
-	}
-
-	return (len);
 }
 
