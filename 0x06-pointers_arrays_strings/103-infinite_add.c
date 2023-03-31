@@ -18,7 +18,7 @@ void add_rest_numbers(char *r, int *greater, int *less,
 
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-	int less, greater = 0, rest = 0;
+	int less, greater, rest = 0;
 	int n1_len = strlen(n1);
 	int n2_len = strlen(n2);
 
@@ -39,9 +39,11 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 	}
 	else
 	{
-
 		*(r + greater + 1) = '\0';
-		add_numbers(r, &greater, &less, &rest, n1, n2);
+		if (n1_len > n2_len)
+			add_numbers(r, &greater, &less, &rest, n1, n2);
+		else
+			add_numbers(r, &greater, &less, &rest, n2, n1);
 		add_rest_numbers(r, &greater, &less, &rest, n1, n2, n1_len, n2_len);
 	}
 
