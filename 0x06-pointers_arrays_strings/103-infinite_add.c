@@ -47,6 +47,14 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 		add_rest_numbers(r, &greater, &less, &rest, n1, n2, n1_len, n2_len);
 	}
 
+	if (r[0] == '0')
+	{
+		int i, r_len = strlen(r);
+
+		for (i = 0; i < r_len; i++)
+			*(r + i) = *(r + (i + 1));
+	}
+
 	return (r);
 }
 

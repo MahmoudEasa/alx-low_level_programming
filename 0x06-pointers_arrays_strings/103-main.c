@@ -116,7 +116,7 @@ int main(void)
         }
  
 
-        n = "";
+        n = "0";
         m = "1";
         res = infinite_add(n, m, r2, 10);
         if (res == 0)
@@ -129,8 +129,8 @@ int main(void)
         }
 
 
-	n = "";
-        m = "";
+	n = "0";
+        m = "0";
         res = infinite_add(n, m, r2, 10);
         if (res == 0)
         {
