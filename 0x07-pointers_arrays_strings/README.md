@@ -1,2 +1,2 @@
-# C - Even more pointers, arrays and
+# C - Even more pointers, arrays and strings
 
