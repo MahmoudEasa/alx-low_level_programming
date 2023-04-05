@@ -39,10 +39,13 @@ int _sqrt_helper(int n, int start, int end)
 	if (start > end)
 		return (-1);
 
-	if (mid * mid == n)
+	if ((mid * mid) == n)
 		return (mid);
 
-	if (mid * mid < n)
+	if (mid > 10000)
+		return (_sqrt_helper(n, start, mid - 1));
+
+	if ((mid * mid) < n)
 		return (_sqrt_helper(n, mid + 1, end));
 	else
 		return (_sqrt_helper(n, start, mid - 1));
