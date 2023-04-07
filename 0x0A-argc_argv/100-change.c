@@ -42,20 +42,32 @@ int coins_count(int num)
 {
 	int coins = 0;
 
-	if (num >= 25)
-		coins = 1 + coins_count(num - 25);
-
-	else if (num >= 10)
-		coins = 1 + coins_count(num - 10);
-
-	else if (num >= 5)
-		coins = 1 + coins_count(num - 5);
-
-	else if (num >= 2)
-		coins = 1 + coins_count(num - 2);
-
-	else if (num >= 1)
-		coins = 1 + coins_count(num - 1);
+	while (num > 0)
+		if (num >= 25)
+		{
+			coins += num / 25;
+			num %= 25;
+		}
+		else if (num >= 10)
+		{
+			coins += num / 10;
+			num %= 10;
+		}
+		else if (num >= 5)
+		{
+			coins += num / 5;
+			num %= 5;
+		}
+		else if (num >= 2)
+		{
+			coins += num / 2;
+			num %= 2;
+		}
+		else
+		{
+			coins += num;
+			num = 0;
+		}
 
 	return (coins);
 }
