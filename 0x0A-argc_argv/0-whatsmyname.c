@@ -2,15 +2,15 @@
 
 /**
  * main - Entry point
- * @:argc: The count of arguments
+ * @argc: The count of arguments
  * @argv: An array of arguments
  *
  * Return: 0
  */
 
-int main(__attribute__((unused)) int argc, char *argv[])
+int main(int argc, char *argv[])
 {
-	printf("%s\n", argv[0]);
+	printf("%s\n", argv[argc - 1]);
 
 	return (0);
 }
