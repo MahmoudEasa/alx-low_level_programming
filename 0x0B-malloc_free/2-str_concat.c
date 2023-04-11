@@ -50,10 +50,13 @@ char *str_concat(char *s1, char *s2)
 char *str_concat_helper(char *s1, char *s2)
 {
 	char *ptr, *ptr_helper;
-	unsigned int s1_len, s2_len, sum;
+	unsigned int s1_len = 0, s2_len = 0, sum;
 
-	s1_len = strlen(s1);
-	s2_len = strlen(s2);
+	if (s1)
+		s1_len = strlen(s1);
+	if (s2)
+		s2_len = strlen(s2);
+
 	sum = s1_len + s2_len;
 
 	ptr = (char *)malloc((sizeof(ptr)) * (sum + 1));
@@ -61,20 +64,21 @@ char *str_concat_helper(char *s1, char *s2)
 
 	if (ptr)
 	{
-		while (*s1)
-		{
-			*ptr_helper = *s1;
-			ptr_helper++;
-			s1++;
-		}
+		if (s1)
+			while (*s1)
+			{
+				*ptr_helper = *s1;
+				ptr_helper++;
+				s1++;
+			}
 
-
-		while (*s2)
-		{
-			*ptr_helper = *s2;
-			ptr_helper++;
-			s2++;
-		}
+		if (s2)
+			while (*s2)
+			{
+				*ptr_helper = *s2;
+				ptr_helper++;
+				s2++;
+			}
 
 		*ptr_helper = '\0';
 	}
