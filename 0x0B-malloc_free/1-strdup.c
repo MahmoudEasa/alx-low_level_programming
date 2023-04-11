@@ -7,7 +7,7 @@
  *	which contains a copy of the string given as a parameter
  * @str: string
  *
- * Reutn: pointer to a new string which is a duplicate of the string str
+ * Return: pointer to a new string which is a duplicate of the string str
  *	or NULL (if str = NULL or insufficient memory was available)
  */
 
@@ -20,7 +20,7 @@ char *_strdup(char *str)
 		return (NULL);
 
 	str_len = strlen(str);
-	ptr = malloc((sizeof(*ptr)) * str_len);
+	ptr = malloc((sizeof(*ptr)) * (str_len + 1));
 
 	if (!ptr)
 		return (NULL);
