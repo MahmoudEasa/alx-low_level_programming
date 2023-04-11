@@ -23,7 +23,7 @@ char *str_concat(char *s1, char *s2)
 
 	if (!s1 && !s2)
 	{
-		ptr = malloc(1);
+		ptr = malloc(sizeof(*ptr));
 
 		if (ptr)
 			ptr[0] = '\0';
@@ -59,7 +59,7 @@ char *str_concat_helper(char *s1, char *s2)
 
 	sum = s1_len + s2_len;
 
-	ptr = (char *)malloc((sizeof(ptr)) * sum);
+	ptr = (char *)malloc(sizeof(*ptr) * sum);
 	ptr_helper = ptr;
 
 	if (ptr)
