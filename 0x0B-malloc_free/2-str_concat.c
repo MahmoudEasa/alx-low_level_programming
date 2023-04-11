@@ -59,7 +59,7 @@ char *str_concat_helper(char *s1, char *s2)
 
 	sum = s1_len + s2_len;
 
-	ptr = (char *)malloc((sizeof(ptr)) * (sum + 1));
+	ptr = (char *)malloc(((sizeof(ptr)) * sum) + 1);
 	ptr_helper = ptr;
 
 	if (ptr)
