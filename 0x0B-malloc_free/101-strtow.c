@@ -129,6 +129,7 @@ void allocate_space_in_memory(int words, char **ptr, char *str, char *ptr_last)
 						free(ptr[--j]);
 
 					free(ptr);
+					ptr = NULL;
 					return;
 				}
 
