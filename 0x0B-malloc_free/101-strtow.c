@@ -111,11 +111,11 @@ void allocate_space_in_memory(int words, char **ptr, char *str, char *ptr_last)
 
 	for (j = 0; j < words; j++)
 	{
-		for (; i <= str_len; i++)
+		for (; i <= str_len + 1; i++)
 		{
-			if (str[i] != ' ')
+			if (str[i] != ' ' && str[i] != '\0')
 				word++;
-			else if (str[i] == ' ' && str[i - 1] != ' ')
+			else if ((str[i] == ' ' && str[i - 1] != ' ') || (str[i] == '\0'))
 			{
 				ptr[j] = (char *)malloc(sizeof(char) * word + 1);
 
@@ -125,7 +125,7 @@ void allocate_space_in_memory(int words, char **ptr, char *str, char *ptr_last)
 					w_help++;
 				}
 
-				ptr[j][w_help] = '\0';
+				ptr[j][w] = '\0';
 				w_help++;
 				i++;
 				word = 0;
