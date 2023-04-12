@@ -49,6 +49,10 @@ char **strtow(char *str)
 
 	/*Allocate space in memory*/
 	allocate_space_in_memory(words, ptr, str, ptr_last);
+
+	if (!ptr)
+		return (NULL);
+
 	return (ptr);
 }
 
@@ -118,6 +122,15 @@ void allocate_space_in_memory(int words, char **ptr, char *str, char *ptr_last)
 			else if ((str[i] == ' ' && str[i - 1] != ' ') || (str[i] == '\0'))
 			{
 				ptr[j] = (char *)malloc(sizeof(char) * word + 1);
+
+				if (!ptr[j])
+				{
+					while (j > 0)
+						free(ptr[--j]);
+
+					free(ptr);
+					return;
+				}
 
 				for (w = 0; w < word; w++)
 				{
