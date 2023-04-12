@@ -17,12 +17,11 @@ char *argstostr(int ac, char **av)
 	char *ptr;
 	int i, j, arg_len, args_len = 0, len = 0;
 
-	if (ac <= 1 || av == NULL)
+	if (ac == 0 || av == NULL)
 	{
 		return (NULL);
 	}
-	else
-		ac -= 1;
+
 	for (i = 0; i < ac; i++)
 		args_len += (strlen(av[i]) + 1);
 
@@ -31,7 +30,7 @@ char *argstostr(int ac, char **av)
 	if (!ptr)
 		return (NULL);
 
-	for (i = 1; i <= ac; i++)
+	for (i = 0; i < ac; i++)
 	{
 		arg_len = strlen(av[i]);
 
