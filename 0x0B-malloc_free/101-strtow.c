@@ -1,7 +1,13 @@
 #include <stdlib.h>
 #include <stddef.h>
 #include <string.h>
+#include <ctype.h>
 #include <stdio.h>
+
+char *remove_start_spaces(char *str);
+void word_count(char *str, int *words);
+void allocate_space_in_memory(int words, char **ptr,
+		char *str, char *ptr_last);
 
 /**
  * strtow - splits a string into words
@@ -13,63 +19,109 @@
 
 char **strtow(char *str)
 {
-	char **ptr, *ps = str;
-	int str_len, i = 0, w = 0, w_help = 0, j = 0, words = 0, word = 0;
+	char **ptr, *ptr_last;
+	int str_len, words = 0;
 
-	if (!str || *str == '\0')
+	if (!str || (*str == ' ' && *(str + 1) == '\0'))
 		return (NULL);
 
-	str_len = strlen(str);
+	/*Remove spaces from the start of the string*/
+	if (*str == ' ')
+		str = remove_start_spaces(str);
 
-	/*Move pointer to first character in string*/
-
-	for (i = 0; i < str_len; i++)
-	{
-		if (str[i] == ' ')
-		{
-			str_len--;
-			ps++;
-		}
-		else
-			break;
-	}
-
-	if (*ps == '\0')
+	if (*str == '\0')
 		return (NULL);
 
-	for (i = strlen(str) - 1; i >= 0; i--)
-		if (str[i] == ' ')
-			str_len--;
-		else
-			break;
+	/*Remove spaces from the end of the string*/
+	str_len = strlen(str) - 1;
+	while (str_len > 0 && isspace(str[str_len]))
+		str_len--;
 
+	ptr_last = (str + str_len);
+
+	/*Word count*/
 	words++;
-
-	for (i = 0; i < str_len; i++)
-		if (ps[i] == ' ' && ps[i + 1] != ' ')
-			words++;
-		else
-			continue;
-
+	word_count(str, &words);
 	ptr = (char **)malloc(sizeof(char *) * (words + 1));
 
 	if (!ptr)
 		return (NULL);
 
-	i = 0;
+	/*Allocate space in memory*/
+	allocate_space_in_memory(words, ptr, str, ptr_last);
+	return (ptr);
+}
+
+/**
+ * remove_start_spaces - remove spaces from the start of the string
+ * @str: String
+ *
+ * Return: pointer to the first character of the string
+ */
+
+char *remove_start_spaces(char *str)
+{
+	while (*str != '\0')
+		if (*str == ' ')
+			str++;
+		else
+			break;
+	return (str);
+}
+
+/**
+ * word_count - word count in string
+ * @str: String
+ * @words: word count
+ */
+
+void word_count(char *str, int *words)
+{
+	while (*str != '\0')
+	{
+		if (*str == ' ' && (*(str + 1) != ' ' && *(str + 1) != '\0'))
+			*words += 1;
+		else
+		{
+			str++;
+			continue;
+		}
+		str++;
+	}
+}
+
+/**
+ * allocate_space_in_memory - Allocate space in memory
+ * @words: count of words to allocate
+ * @ptr: 2d array
+ * @str: string
+ * @ptr_last: last character in the string
+ */
+
+void allocate_space_in_memory(int words, char **ptr, char *str, char *ptr_last)
+{
+	int str_len = 0, i = 0, w = 0, w_help = 0, j = 0, word = 0;
+	char *p_h = str;
+
+	while (p_h <= ptr_last)
+	{
+		str_len++;
+		p_h++;
+	}
+
 	for (j = 0; j < words; j++)
 	{
 		for (; i <= str_len; i++)
 		{
-			if (ps[i] != ' ')
+			if (str[i] != ' ')
 				word++;
-			else if (ps[i] == ' ' && ps[i - 1] != ' ')
+			else if (str[i] == ' ' && str[i - 1] != ' ')
 			{
 				ptr[j] = (char *)malloc(sizeof(char) * word + 1);
 
 				for (w = 0; w < word; w++)
 				{
-					ptr[j][w] = ps[w_help];
+					ptr[j][w] = str[w_help];
 					w_help++;
 				}
 
@@ -85,7 +137,5 @@ char **strtow(char *str)
 	}
 
 	ptr[i] = NULL;
-
-	return (ptr);
 }
 
