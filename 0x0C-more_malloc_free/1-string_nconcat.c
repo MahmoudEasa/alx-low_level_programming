@@ -3,9 +3,6 @@
 #include <stdio.h>
 #include <string.h>
 
-char *concat_helper(char *s1, char *s2, unsigned int n,
-		unsigned int s1_len, unsigned int s2_len);
-
 /**
  * string_nconcat - concatenates two strings
  * @s1: first string
@@ -20,69 +17,38 @@ char *concat_helper(char *s1, char *s2, unsigned int n,
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
 	char *ptr;
-	unsigned int s1_len = 0, s2_len = 0;
+	unsigned int i = 0, index = 0, len, s2_len;
 
-	if (s1)
-		s1_len = strlen(s1);
-	if (s2)
-		s2_len = strlen(s2);
+	if (!s1)
+		s1 = "";
+	if (!s2)
+		s2 = "";
 
-	if (!s1 && !s2)
-	{
-		ptr = malloc(sizeof(*s1));
-		if (!ptr)
-			return (NULL);
+	s2_len = strlen(s2);
 
-		*ptr = '\0';
-	}
-
-	if (s1 && (!s2 || *s2 == '\0'))
-	{
-		return (s1);
-	}
+	if (n < s2_len)
+		len = (strlen(s1) + n) + 1;
 	else
-		ptr = concat_helper(s1, s2, n, s1_len, s2_len);
+		len = (strlen(s1) + s2_len) + 1;
 
-	return (ptr);
-}
-
-/**
- * concat_helper - concatenates two strings
- * @s1: first string
- * @s2: second string
- * @n: number
- * @s1_len: s1 length
- * @s2_len: s2 length
- *
- * Return: pointer shall point to a newly allocated space in memory,
- *	which contains s1, followed by the first n bytes of s2, and null terminated
- *	or NULL if the function fails
- */
-
-char *concat_helper(char *s1, char *s2, unsigned int n,
-		unsigned int s1_len, unsigned int s2_len)
-{
-	unsigned int i = 0, sum, w = 0;
-	char *ptr;
-
-	if (n >= s2_len)
-		sum = s1_len + s2_len + 1;
-	else
-		sum = s1_len + n + 1;
-
-	ptr = malloc(sizeof(*s1) * sum);
+	ptr = malloc(sizeof(*s1) * len);
 
 	if (!ptr)
 		return (NULL);
 
-	if (s1_len > 0)
-		for (; i < s1_len; i++)
-			ptr[i] = s1[i];
+	while (s1[index] != '\0')
+	{
+		ptr[index] = s1[index];
+		index++;
+	}
 
-	for (; i < sum; i++)
-		ptr[i] = s2[w++];
-
-	ptr[i] = '\0';
+	while ((s2[i] != '\0' && i < n))
+	{
+		ptr[index] = s2[i];
+		index++;
+		i++;
+	}
+	ptr[index] = '\0';
 
 	return (ptr);
 }
