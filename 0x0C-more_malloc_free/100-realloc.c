@@ -56,7 +56,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
  * @size1: number 1
  * @size2: number 2
  *
- * Return: minimum size
+ * Return: minimum size.
  */
 
 int min(int size1, int size2)
