@@ -34,7 +34,6 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 		free(ptr);
 		return (NULL);
 	}
-
 	else
 	{
 		p = malloc(new_size);
@@ -62,6 +61,6 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 
 int min(int size1, int size2)
 {
-	return (size1 > size2 ? size1 : size2);
+	return (size1 < size2 ? size1 : size2);
 }
 
