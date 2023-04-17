@@ -1,3 +1,6 @@
+#ifndef DOG_H
+#define DOG_H
+
 /**
  * struct dog - new type
  * @name: string
@@ -14,3 +17,4 @@ struct dog
 	char *owner;
 };
 
+#endif
