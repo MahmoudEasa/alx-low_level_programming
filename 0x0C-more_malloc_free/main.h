@@ -48,5 +48,6 @@ void multiply_first_num(char *arg1, char *arg2, Multiply *pm,
 int s1_len, int s2_len);
 void print(Multiply *pm);
 void free_nodes(Multiply *pm);
+void add_zero(int zero, MultiplyNode *p_h);
 
 #endif /* #ifndef MAIN_H */

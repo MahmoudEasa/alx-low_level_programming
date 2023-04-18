@@ -150,7 +150,7 @@ void multiply_first_num(char *arg1, char *arg2, Multiply *pm,
 /**
  * multiply_nums - multiply numbers
  * @arg1: string of numbers
- * @string of numbers
+ * @arg2: string of numbers
  * @pm: stack pointer to a node
  * @s1_len: the length of the string 1
  * @s2_len: the length of the string 2
@@ -167,7 +167,8 @@ void multiply_nums(char *arg1, char *arg2, Multiply *pm,
 	for (i = s2_len - 2; i >= 0; i--)
 	{
 		for (z = 0; z < zero; z++)
-			p_h = p_h->prev;
+			if (p_h->prev)
+				p_h = p_h->prev;
 
 		for (j = s1_len - 1; j >= 0; j--)
 		{
@@ -178,13 +179,15 @@ void multiply_nums(char *arg1, char *arg2, Multiply *pm,
 			if (mul <= 9)
 			{
 				p_h->data = (mul + '0');
-				p_h = p_h->prev;
+				if (p_h->prev)
+					p_h = p_h->prev;
 			}
 			else
 			{
 				p_h->data = ((mul % 10) + '0');
 				remainder = mul / 10;
-				p_h = p_h->prev;
+				if (p_h->prev)
+					p_h = p_h->prev;
 			}
 		}
 		if (remainder > 0)
