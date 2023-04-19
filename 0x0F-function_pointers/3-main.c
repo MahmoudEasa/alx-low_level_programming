@@ -13,7 +13,7 @@
 
 int main(int argc, char **argv)
 {
-	int num1, num2, result = 0;
+	int num1, num2, result;
 	char *op;
 
 	if (argc != 4)
@@ -22,8 +22,8 @@ int main(int argc, char **argv)
 		exit(98);
 	}
 
-	if (*argv[2] != '+' && *argv[2] != '-' && *argv[2] != '*'
-				&& *argv[2] != '/' && *argv[2] != '%')
+	if ((*argv[2] != '+' && *argv[2] != '-' && *argv[2] != '*'
+				&& *argv[2] != '/' && *argv[2] != '%') || (*(argv[2] + 1) != '\0'))
 	{
 		printf("Error\n");
 		exit(99);
