@@ -172,22 +172,42 @@ void multiply_nums(char *arg1, char *arg2, Multiply *pm,
 
 		for (j = s1_len - 1; j >= 0; j--)
 		{
-			data = (p_h->data - '0');
+			if (p_h)
+			{
+				data = (p_h->data - '0');
+			}
+			else
+				data = 0;
+
 			mul = ((arg2[i] - '0') * (arg1[j] - '0')) + data + remainder;
 			remainder = 0;
 
 			if (mul <= 9)
 			{
-				p_h->data = (mul + '0');
-				if (p_h->prev)
+				if (p_h)
+				{
+					p_h->data = (mul + '0');
 					p_h = p_h->prev;
-			}
+				}
+				else
+				{
+					_push((mul + '0'), pm);
+				}
+			}	
 			else
 			{
-				p_h->data = ((mul % 10) + '0');
-				remainder = mul / 10;
-				if (p_h->prev)
+				printf("\nelsemul: %d prev: %p\n", mul, (char *)p_h->prev);
+				if (p_h)
+				{
+					p_h->data = ((mul % 10) + '0');
+					remainder = mul / 10;
 					p_h = p_h->prev;
+				}
+				else
+				{
+					_push(((mul % 10) + '0'), pm);
+					remainder = mul / 10;
+				}
 			}
 		}
 		if (remainder > 0)
