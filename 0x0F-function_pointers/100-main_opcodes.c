@@ -30,8 +30,14 @@ int main(int argc, char **argv)
 		exit(1);
 	}
 
-	for (i = 0; i <= bytes; i++)
-		printf("%.2x ", ptr[i]);
+	for (i = 0; i < bytes; i++)
+	{
+		printf("%.2x", ptr[i]);
+		if (i == bytes - 1)
+			continue;
+
+		printf(" ");
+	}
 
 	printf("\n");
 	return (0);
