@@ -27,7 +27,7 @@ int main(int argc, char **argv)
 	if (bytes < 0)
 	{
 		printf("Error\n");
-		exit(1);
+		exit(2);
 	}
 
 	for (i = 0; i < bytes; i++)
