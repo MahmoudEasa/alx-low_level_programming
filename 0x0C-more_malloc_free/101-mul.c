@@ -49,6 +49,11 @@ int main(int argc, char **argv)
 	/*multiplies two positive numbers*/
 	multiply_first_num(arg1, arg2, &m, s1_len, s2_len);
 	multiply_nums(arg1, arg2, &m, s1_len, s2_len);
+	if (!pm->top)
+	{
+		printf("Error");
+		return (0);
+	}
 	free_zero(&m);
 	print(&m);
 	free_nodes(&m);
@@ -195,10 +200,17 @@ void multiply_first_num(char *arg1, char *arg2, Multiply *pm,
 
 		remainder = mul / 10;
 		_push(((mul % 10) + '0'), pm);
+		if (!pm->top)
+			return;
 	}
 
 	if (remainder > 0)
+	{
 		_push((remainder + '0'), pm);
+		if (!pm->top)
+			return;
+	}
+
 }
 
 /**
@@ -244,6 +256,8 @@ void multiply_nums(char *arg1, char *arg2, Multiply *pm,
 			else
 			{
 				_push(((mul % 10) + '0'), pm);
+				if (!pm->top)
+					return;
 				remainder = mul / 10;
 				p_h = pm->top->prev;
 			}
@@ -265,11 +279,21 @@ void add_remainder(int *remainder, Multiply *pm)
 	if (*remainder > 0)
 	{
 		if (*remainder <= 9)
+		{
 			_push((*remainder + '0'), pm);
+			if (!pm->top)
+				return;
+		}
 		else
 		{
 			_push(((*remainder % 10) + '0'), pm);
+			if (!pm->top)
+				return;
+
 			_push(((*remainder / 10) + '0'), pm);
+			if (!pm->top)
+				return;
+
 		}
 		*remainder = 0;
 	}
