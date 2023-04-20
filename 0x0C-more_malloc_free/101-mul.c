@@ -133,18 +133,12 @@ void multiply_first_num(char *arg1, char *arg2, Multiply *pm,
 		mul = (((arg2[s2_len - 1]) - '0') * (arg1[i] - '0')) + remainder;
 		remainder = 0;
 
-		if (mul <= 9)
-			_push((mul + '0'), pm);
-		else
-		{
-			remainder = mul / 10;
-			_push(((mul % 10) + '0'), pm);
-		}
+		remainder = mul / 10;
+		_push(((mul % 10) + '0'), pm);
 	}
 
 	if (remainder > 0)
 		_push((remainder + '0'), pm);
-
 }
 
 /**
@@ -167,8 +161,7 @@ void multiply_nums(char *arg1, char *arg2, Multiply *pm,
 	for (i = s2_len - 2; i >= 0; i--)
 	{
 		for (z = 0; z < zero; z++)
-			if (p_h->prev)
-				p_h = p_h->prev;
+			p_h = p_h->prev;
 
 		for (j = s1_len - 1; j >= 0; j--)
 		{
@@ -182,41 +175,43 @@ void multiply_nums(char *arg1, char *arg2, Multiply *pm,
 			mul = ((arg2[i] - '0') * (arg1[j] - '0')) + data + remainder;
 			remainder = 0;
 
-			if (mul <= 9)
+			if (p_h)
 			{
-				if (p_h)
-				{
-					p_h->data = (mul + '0');
-					p_h = p_h->prev;
-				}
-				else
-				{
-					_push((mul + '0'), pm);
-				}
-			}	
+				p_h->data = ((mul % 10) + '0');
+				remainder = mul / 10;
+				p_h = p_h->prev;
+			}
 			else
 			{
-				printf("\nelsemul: %d prev: %p\n", mul, (char *)p_h->prev);
-				if (p_h)
-				{
-					p_h->data = ((mul % 10) + '0');
-					remainder = mul / 10;
-					p_h = p_h->prev;
-				}
-				else
-				{
-					_push(((mul % 10) + '0'), pm);
-					remainder = mul / 10;
-				}
+				_push(((mul % 10) + '0'), pm);
+				remainder = mul / 10;
+				p_h = pm->top->prev;
 			}
 		}
-		if (remainder > 0)
-		{
-			_push((remainder + '0'), pm);
-			remainder = 0;
-		}
+		add_remainder(&remainder, pm);
 		zero++;
 		p_h = pm->end;
+	}
+}
+
+/**
+ * add_remainder - add remainder numbers
+ * @remainder: number
+ * @pm: pointer to stack
+ */
+
+void add_remainder(int *remainder, Multiply *pm)
+{
+	if (*remainder > 0)
+	{
+		if (*remainder <= 9)
+			_push((*remainder + '0'), pm);
+		else
+		{
+			_push(((*remainder % 10) + '0'), pm);
+			_push(((*remainder / 10) + '0'), pm);
+		}
+		*remainder = 0;
 	}
 }
 

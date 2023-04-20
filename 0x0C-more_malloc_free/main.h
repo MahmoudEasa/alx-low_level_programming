@@ -49,5 +49,6 @@ int s1_len, int s2_len);
 void print(Multiply *pm);
 void free_nodes(Multiply *pm);
 void add_zero(int zero, MultiplyNode *p_h);
+void add_remainder(int *remainder, Multiply *pm);
 
 #endif /* #ifndef MAIN_H */
