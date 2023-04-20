@@ -148,6 +148,8 @@ void _push(char c, Multiply *pm)
 
 	if (!pn)
 	{
+		if (pm->top)
+			free_nodes(pm);
 		pm->top = NULL;
 		pm->end = NULL;
 		return;
