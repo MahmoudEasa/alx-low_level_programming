@@ -37,15 +37,40 @@ int main(int argc, char **argv)
 		return (0);
 	}
 
+	if (print_zero(arg1, arg2, s1_len, s2_len))
+	{
+		printf("0\n");
+		return (0);
+	}
+
 	/*Create Node*/
 	create_node(&m);
 
 	/*multiplies two positive numbers*/
 	multiply_first_num(arg1, arg2, &m, s1_len, s2_len);
 	multiply_nums(arg1, arg2, &m, s1_len, s2_len);
+
+	free_zero(&m);
 	print(&m);
 	free_nodes(&m);
 	return (0);
+}
+
+/**
+ * free_zero - free first zero of string
+ * @pm: stack
+ */
+
+void free_zero(Multiply *pm)
+{
+	MultiplyNode *p_h;
+
+	while (pm->top->data == '0')
+	{
+		p_h = pm->top;
+		pm->top = pm->top->next;
+		free(p_h);
+	}
 }
 
 /**
@@ -64,6 +89,40 @@ int _isdigit(char *s)
 			return (0);
 
 	return (1);
+}
+
+/**
+ * print_zero - print zero if the numpers are zero
+ * @arg1: string
+ * @arg2: string
+ * @s1_len: length of arg1
+ * @s2_len: length of arg2
+ *
+ * Return: 1 if (arg1 or arg2 = length of 0) else return 0
+ */
+
+int print_zero(char *arg1, char *arg2, int s1_len, int s2_len)
+{
+	int i, n1_found = 0, n2_found = 0;
+
+	for (i = 0; i < s1_len; i++)
+		if (arg1[i] != '0')
+		{
+			n1_found = 1;
+			break;
+		}
+
+	for (i = 0; i < s2_len; i++)
+		if (arg2[i] != '0')
+		{
+			n2_found = 1;
+			break;
+		}
+
+	if (n1_found == 0 || n2_found == 0)
+		return (1);
+
+	return (0);
 }
 
 /**
