@@ -49,7 +49,6 @@ int main(int argc, char **argv)
 	/*multiplies two positive numbers*/
 	multiply_first_num(arg1, arg2, &m, s1_len, s2_len);
 	multiply_nums(arg1, arg2, &m, s1_len, s2_len);
-
 	free_zero(&m);
 	print(&m);
 	free_nodes(&m);
