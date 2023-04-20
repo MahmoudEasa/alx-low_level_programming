@@ -49,7 +49,7 @@ int main(int argc, char **argv)
 	/*multiplies two positive numbers*/
 	multiply_first_num(arg1, arg2, &m, s1_len, s2_len);
 	multiply_nums(arg1, arg2, &m, s1_len, s2_len);
-	if (!pm->top)
+	if (!m.top)
 	{
 		printf("Error");
 		return (0);
