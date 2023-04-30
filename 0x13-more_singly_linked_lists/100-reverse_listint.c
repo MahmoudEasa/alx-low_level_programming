@@ -3,8 +3,6 @@
 #include <stdio.h>
 #include "lists.h"
 
-void reverse(listint_t *temp, listint_t *last);
-
 /**
  * reverse_listint - reverses a listint_t linked list
  * @head: pointer to first element
@@ -14,37 +12,19 @@ void reverse(listint_t *temp, listint_t *last);
 
 listint_t *reverse_listint(listint_t **head)
 {
-	listint_t *temp = *head, *last = NULL;
+	listint_t *prev = NULL, *next;
 
 	if (head && *head && !(*head)->next)
 		return (*head);
 
-	while (temp != last)
+	while (*head)
 	{
-		if ((*head)->next != last)
-			*head = temp->next;
-		else
-			break;
-		reverse(temp, last);
-		last = temp;
-		temp = *head;
+		next = (*head)->next;
+		(*head)->next = prev;
+		prev = *head;
+		*head = next;
 	}
+	*head = prev;
 	return (*head);
-}
-
-/**
- * reverse - reverse node
- * @temp: pointer to node
- * @last: pointer to the last node to stop
- */
-
-void reverse(listint_t *temp, listint_t *last)
-{
-	listint_t *help = temp;
-
-	while (help->next != last)
-		help = help->next;
-	temp->next = last;
-	help->next = temp;
 }
 
