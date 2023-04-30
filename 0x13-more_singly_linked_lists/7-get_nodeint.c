@@ -23,7 +23,7 @@ listint_t *get_nodeint_at_index(listint_t *head, unsigned int index)
 		return (head);
 
 	ptr = head;
-	while ((i <= index && ptr->next))
+	while ((i <= index && ptr))
 	{
 		if (i++ == index)
 			return (ptr);
