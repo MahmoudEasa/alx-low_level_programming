@@ -12,20 +12,24 @@
 
 size_t free_listint_safe(listint_t **h)
 {
-	listint_t *ptr, *next = (*h)->next;
+	listint_t *ptr, *next;
 	size_t count = 0;
 
-	while ((*h && next && (next < ptr)))
+	if (h && *h)
 	{
-		ptr = (*h)->next;
-		next = next->next;
+		next = (*h)->next;
+		while ((*h && next && (next < ptr)))
+		{
+			ptr = (*h)->next;
+			next = next->next;
+			free(*h);
+			*h = ptr;
+			count++;
+		}
 		free(*h);
-		*h = ptr;
+		*h = NULL;
 		count++;
 	}
-	free(*h);
-	*h = NULL;
-	count++;
 
 	return (count);
 }
