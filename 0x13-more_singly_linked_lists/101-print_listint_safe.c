@@ -12,12 +12,13 @@
 
 size_t print_listint_safe(const listint_t *head)
 {
-	const listint_t *ptr = head, *next = head->next;
+	const listint_t *ptr = head, *next;
 	size_t count = 0;
 
 	if (!head)
 		exit(98);
 
+	next = head->next;
 	while ((ptr && next && (next < ptr)))
 	{
 		printf("[%p] %d\n", (void *)ptr, ptr->n);
