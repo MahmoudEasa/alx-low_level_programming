@@ -18,13 +18,6 @@ size_t print_listint_safe(const listint_t *head)
 	if (!head)
 		exit(98);
 
-	if (ptr && !next)
-	{
-		printf("[%p] %d\n", (void *)ptr, ptr->n);
-		return (1);
-	}
-
-
 	while ((ptr && next && (next < ptr)))
 	{
 		printf("[%p] %d\n", (void *)ptr, ptr->n);
