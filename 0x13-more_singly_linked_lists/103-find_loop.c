@@ -24,8 +24,8 @@ listint_t *find_listint_loop(listint_t *head)
 		next = next->next;
 	}
 
-	if (next)
-		return (next);
+	if (ptr && next)
+		return (ptr);
 
 	return (NULL);
 }
