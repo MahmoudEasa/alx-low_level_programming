@@ -25,7 +25,7 @@ size_t print_listint_safe(const listint_t *head)
 			if (arr[i] == ptr)
 			{
 				printf("-> [%p] %d\n", (void *)ptr, ptr->n);
-				exit(98);
+				return (count);
 			}
 
 		arr[count] = ptr;
