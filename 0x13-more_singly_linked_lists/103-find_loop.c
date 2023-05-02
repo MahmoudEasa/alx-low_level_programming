@@ -13,23 +13,20 @@
 
 listint_t *find_listint_loop(listint_t *head)
 {
-	listint_t *ptr = head, *next;
-	(void)ptr;
-	(void)head;
-	(void)next;
+	listint_t *ptr = head;
+	listint_t *arr[1024];
+	int count = 0, i;
 
-	if (head)
-		next = head->next;
-
-
-	while ((ptr && next && (next < ptr)))
+	while (ptr)
 	{
-		ptr = ptr->next;
-		next = next->next;
-	}
+		for (i = 0; i < count; i++)
+			if (arr[i] == ptr)
+				return (ptr);
 
-	if (next)
-		return (next);
+		arr[count] = ptr;
+		count++;
+		ptr = ptr->next;
+	}
 
 	return (NULL);
 }
