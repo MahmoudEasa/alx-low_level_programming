@@ -20,5 +20,16 @@ int main(void)
     printf("%u\n", n);
     n = binary_to_uint("0000000000000000000110010010");
     printf("%u\n", n);
+
+    printf("\n================ NULL =================\n");
+
+    n = binary_to_uint(NULL);
+    printf("%u\n", n);
+ 
+    printf("\n================ \" \" =================\n");
+
+    n = binary_to_uint("");
+    printf("%u\n", n);
+ 
     return (0);
 }

@@ -14,11 +14,12 @@
 unsigned int binary_to_uint(const char *b)
 {
 	unsigned int num = 0, binary = 1;
-	int len = strlen(b), i;
+	int len, i;
 
-	if (!b)
+	if (!b || *b == '\0')
 		return (0);
 
+	len = strlen(b);
 	for (i = len - 1; i >= 0; i--)
 	{
 		if (b[i] != '0' && b[i] != '1')
