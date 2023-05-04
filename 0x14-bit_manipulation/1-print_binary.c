@@ -8,7 +8,7 @@
 
 void print_binary(unsigned long int n)
 {
-	int i, start_print = 0;
+	int i = sizeof(int) * 8, start_print = 0;
 
 	if (n < 2)
 	{
@@ -16,7 +16,7 @@ void print_binary(unsigned long int n)
 		return;
 	}
 
-	for (i = 31; i >= 0; i--)
+	for (; i >= 0; i--)
 	{
 		if (((n >> i) & 1) == 1 || start_print == 1)
 		{
