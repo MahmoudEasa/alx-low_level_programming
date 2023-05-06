@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "main.h"
+#include <limits.h>
 
 /**
  * main - check the code
@@ -18,5 +19,15 @@ int main(void)
     printf("\n");
     print_binary((1 << 10) + 1);
     printf("\n");
+
+
+    print_binary(UINT_MAX);
+    printf("\n");
+
+    print_binary(954372342312);
+    printf("\n");
+
+
+
     return (0);
 }

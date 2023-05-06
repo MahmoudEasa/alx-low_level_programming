@@ -8,9 +8,21 @@
 
 void print_binary(unsigned long int n)
 {
-	if (n > 1)
-		print_binary((n >> 1));
+	int i = (sizeof(unsigned long int) * 8) - 1, start_print = 0;
 
-	_putchar((n & 1) + '0');
+	if (n < 2)
+	{
+		_putchar((n + '0'));
+		return;
+	}
+
+	for (; i >= 0; i--)
+	{
+		if (((n >> i) & 1) == 1 || start_print == 1)
+		{
+			start_print = 1;
+			_putchar(((n >> i) & 1) + '0');
+		}
+	}
 }
 
