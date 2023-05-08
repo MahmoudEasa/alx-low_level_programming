@@ -18,6 +18,15 @@ int main(int ac, char **av)
     }
     res = create_file(av[1], av[2]);
     printf("-> %i)\n", res);
+
+/*    printf("--------------------- av[1] NULL --------------------\n");
+    res = create_file(av[1], NULL);
+    printf("-> %i)\n", res);*/
+
+/*    printf("--------------------- NULL av[2] --------------------\n");
+    res = create_file(NULL, av[2]);
+    printf("-> %i)\n", res);*/
+
     return (0);
 }
 
