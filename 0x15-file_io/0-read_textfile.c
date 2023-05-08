@@ -32,7 +32,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 		if (count == -1)
 			return (0);
 
-		printf("%s", buffer);
+		write(STDOUT_FILENO, buffer, count);
 
 	close(f);
 
