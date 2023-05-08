@@ -19,7 +19,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	int f;
 	ssize_t count;
 
-	if (!filename)
+	if (!filename || letters > 1024)
 		return (0);
 
 	f = open(filename, O_RDONLY);

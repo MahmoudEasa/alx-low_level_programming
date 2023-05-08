@@ -20,6 +20,30 @@ int main(int ac, char **av)
     printf("\n(printed chars: %li)\n", n);
     n = read_textfile(av[1], 1024);
     printf("\n(printed chars: %li)\n", n);
+
+
+    printf("\n----------------- 0 len ------------------\n");
+    n = read_textfile(av[1], 0);
+    printf("\n(printed chars: %li)\n", n);
+
+    printf("\n----------------- 1027 len ------------------\n");
+    n = read_textfile(av[1], 1027);
+    printf("\n(printed chars: %li)\n", n);
+
+    printf("\n----------------- NULL and 1027 len ------------------\n");
+    n = read_textfile(NULL, 1027);
+    printf("\n(printed chars: %li)\n", n);
+
+    printf("\n----------------- \" \" and 1 len ------------------\n");
+    n = read_textfile("", 1);
+    printf("\n(printed chars: %li)\n", n);
+
+
+    printf("\n----------------- test and 1 len ------------------\n");
+    n = read_textfile("test", 1);
+    printf("\n(printed chars: %li)\n", n);
+
+
     return (0);
 }
 
