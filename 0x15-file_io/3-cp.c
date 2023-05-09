@@ -16,35 +16,37 @@
 int main(int ac, char **av)
 {
 	int f_from, f_to, count;
-	char buffer[1024];
-	mode_t mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
-	(void) mode;
+	char *buffer;
 
 	if (ac != 3)
-		print_err("Usage:", "cp file_from file_to", 97);
+		print_err("Usage:", "cp file_from file_to", 97, NULL);
+
+	buffer = malloc(sizeof(char) * 1024);
+	if (!buffer)
+		print_err("Error: Can't write to", av[2], 99, NULL);
 
 	f_to = open(av[2], O_WRONLY | O_CREAT | O_TRUNC, 0664);
 
 		if (f_to == -1)
-			print_err("Error: Can't write to", av[2], 99);
+			print_err("Error: Can't write to", av[2], 99, buffer);
 
 		f_from = open(av[1], O_RDONLY);
 			if (f_from == -1)
-				print_err("Error: Can't read from file", av[1], 98);
+				print_err("Error: Can't read from file", av[1], 98, buffer);
 
 			count = read(f_from, buffer, 1024);
 			if (count == -1)
-				print_err("Error: Can't read from file", av[1], 98);
+				print_err("Error: Can't read from file", av[1], 98, buffer);
 
 		if (close(f_from) == -1)
-			print_err("Error:", "Can't close fd -1", 100);
+			print_err("Error:", "Can't close fd -1", 100, buffer);
 
 		count = write(f_to, buffer, strlen(buffer));
 		if (count == -1)
-			print_err("Error: Can't write to", av[2], 99);
+			print_err("Error: Can't write to", av[2], 99, buffer);
 
 	if (close(f_to) == -1)
-		print_err("Error:", "Can't close fd -1", 100);
+		print_err("Error:", "Can't close fd -1", 100, buffer);
 
 	return (0);
 }
@@ -54,10 +56,14 @@ int main(int ac, char **av)
  * @s1: string
  * @s2: strign
  * @ex: number of exit
+ * @buf: pointer to buffer to free
  */
 
-void print_err(char *s1, char *s2, int ex)
+void print_err(char *s1, char *s2, int ex, char *buf)
 {
+	if (buf)
+		free(buf);
+
 	dprintf(STDERR_FILENO, "%s %s\n", s1, s2);
 	exit(ex);
 }
