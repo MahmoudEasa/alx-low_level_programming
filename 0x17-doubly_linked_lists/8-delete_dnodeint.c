@@ -13,7 +13,7 @@
 
 int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 {
-	dlistint_t *temp;
+	dlistint_t *temp, *help;
 	unsigned int i = 0;
 
 	if (!head || !(*head))
@@ -35,9 +35,9 @@ int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 
 	if (temp && temp->next)
 	{
-		temp->next = temp->next->next;
-		free(temp->next->prev);
-		temp->next->prev = temp;
+		help = temp->next->next;
+		free(temp->next);
+		temp->next = help;
 	}
 	else
 		return (-1);
