@@ -30,6 +30,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	}
 	else
 		return (0);
+
 	return (1);
 }
 
@@ -67,37 +68,30 @@ void found_key(hash_node_t **pos, const char *key, const char *value)
 int allocate(hash_table_t *ht, unsigned long int index,
 		const char *key, const char *value)
 {
-	hash_node_t *new_node, *pos;
+	hash_node_t *new_node;
 
 	new_node = (hash_node_t *) malloc(sizeof(hash_node_t));
 	if (!new_node)
 		return (0);
 
-	pos = ht->array[index];
-	if (!pos)
-	{
-		ht->array[index] = new_node;
-		pos = ht->array[index];
-	}
-
-	pos->key = (char *) malloc(sizeof(char) * strlen(key) + 1);
-	if (!pos->key)
+	new_node->key = (char *) malloc(sizeof(char) * strlen(key) + 1);
+	if (!new_node->key)
 	{
 		free(new_node);
 		return (0);
 	}
 
-	pos->value = (char *) malloc(sizeof(char) * (strlen(value) + 1));
-	if (!pos->value)
+	new_node->value = (char *) malloc(sizeof(char) * (strlen(value) + 1));
+	if (!new_node->value)
 	{
+		free(new_node->key);
 		free(new_node);
-		free(pos->key);
 		return (0);
 	}
-	strcpy(pos->key, key);
-	strcpy(pos->value, value);
+	strcpy(new_node->key, key);
+	strcpy(new_node->value, value);
 
-	new_node->next = pos;
+	new_node->next = ht->array[index];
 	ht->array[index] = new_node;
 	return (1);
 }
