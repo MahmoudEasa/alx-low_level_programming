@@ -17,7 +17,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	unsigned long int index;
 	hash_node_t *pos;
 
-	if (key)
+	if (key && *key && value)
 	{
 		index = hash_djb2((unsigned char *)key) % ht->size;
 		pos = ht->array[index];
@@ -28,6 +28,8 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 			if (!allocate(ht, index, key, value))
 				return (0);
 	}
+	else
+		return (0);
 	return (1);
 }
 
