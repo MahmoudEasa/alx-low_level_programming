@@ -121,7 +121,7 @@ int sfound_key(shash_node_t **pos, const char *key, const char *value)
 int sallocate(shash_table_t *ht, unsigned long int index,
 		const char *key, const char *value)
 {
-	shash_node_t *new_node, *pos, *pos_help;
+	shash_node_t *new_node, *pos;
 
 	new_node = (shash_node_t *) malloc(sizeof(shash_node_t));
 	if (!new_node)
@@ -153,10 +153,8 @@ int sallocate(shash_table_t *ht, unsigned long int index,
 	}
 	else
 	{
-		pos_help = pos;
-		while (pos_help->next)
-			pos_help = pos_help->next;
-		pos_help->next = new_node;
+		new_node->next = pos;
+		ht->array[index] = new_node;
 		check_hash_head_tail(ht, new_node, key);
 	}
 	return (1);
