@@ -92,7 +92,7 @@ void insert(shash_node_t *pos, shash_node_t *new_node);
 void push(shash_node_t *pos, shash_node_t *new_node);
 void check_hash_head_tail(shash_table_t *ht,
 		shash_node_t *pos, const char *key);
-void sfound_key(shash_node_t **pos, const char *key, const char *value);
+int sfound_key(shash_node_t **pos, const char *key, const char *value);
 int sallocate(shash_table_t *ht, unsigned long int index,
 		const char *key, const char *value);
 void add_node(shash_table_t *ht,

@@ -16,6 +16,9 @@ shash_table_t *shash_table_create(unsigned long int size)
 	shash_table_t *new;
 	unsigned long int i;
 
+	if (size <= 0)
+		return (NULL);
+
 	new = (shash_table_t *) malloc(sizeof(shash_table_t));
 	if (!new)
 		return (NULL);
@@ -56,7 +59,8 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 		index = hash_djb2((unsigned char *)key) % ht->size;
 		pos = ht->array[index];
 
-		sfound_key(&pos, key, value);
+		if (!sfound_key(&pos, key, value))
+			return (0);
 
 		if (!pos)
 			if (!sallocate(ht, index, key, value))
@@ -73,20 +77,35 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
  * @pos: position in hash table
  * @key: the key
  * @value: the value
+ *
+ * Return: 1 if success or 0
  */
 
-void sfound_key(shash_node_t **pos, const char *key, const char *value)
+int sfound_key(shash_node_t **pos, const char *key, const char *value)
 {
+	size_t c_val_len, val_len;
+
 	while (*pos)
 	{
 		if (strcmp((*pos)->key, key) == 0)
 		{
+			c_val_len = strlen((*pos)->value);
+			val_len = strlen(value);
+			if (c_val_len < val_len)
+			{
+				(*pos)->value = (char *)
+					realloc((*pos)->value, val_len + 1);
+				if (!((*pos)->value))
+					return (0);
+			}
+
 			strcpy((*pos)->value, value);
 			break;
 		}
 
 		*pos = (*pos)->next;
 	}
+	return (1);
 }
 
 /**
@@ -238,7 +257,6 @@ void push(shash_node_t *pos, shash_node_t *new_node)
 	new_node->snext = pos->snext;
 	pos->snext = new_node;
 }
-
 
 /**
  * shash_table_get - retrieves a value associated with a key
