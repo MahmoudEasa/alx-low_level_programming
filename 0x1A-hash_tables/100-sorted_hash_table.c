@@ -162,7 +162,7 @@ int sallocate(shash_table_t *ht, unsigned long int index,
 void check_hash_head_tail(shash_table_t *ht,
 		shash_node_t *pos, const char *key)
 {
-	int hash_head, hash_tail, current_hash;
+	int hash_head, hash_tail;
 
 	if (!(ht->shead))
 		ht->shead = pos;
@@ -170,24 +170,23 @@ void check_hash_head_tail(shash_table_t *ht,
 		ht->stail = pos;
 	if (ht->shead && ht->stail)
 	{
-		current_hash = *key;
-		hash_head = *(ht->shead->key);
-		hash_tail = *(ht->stail->key);
+		hash_head = strcmp(ht->shead->key, key);
+		hash_tail = strcmp(key, ht->stail->key);
 
-		if (current_hash < hash_head)
+		if (hash_head > 0)
 		{
 			ht->shead->sprev = pos;
 			pos->snext = ht->shead;
 			ht->shead = pos;
 		}
-		else if (current_hash > hash_tail)
+		else if (hash_tail > 0)
 		{
 			ht->stail->snext = pos;
 			pos->sprev = ht->stail;
 			ht->stail = pos;
 		}
 		else
-			add_node(ht, current_hash, pos);
+			add_node(ht, hash_head, pos);
 	}
 }
 
@@ -202,11 +201,14 @@ void add_node(shash_table_t *ht,
 		int current_hash, shash_node_t *pos)
 {
 	shash_node_t *temp;
+	int pos_key;
+	(void)current_hash;
 
 	temp = ht->shead;
 	while (temp)
 	{
-		if (current_hash < *(temp->key))
+		pos_key = strcmp(temp->key, pos->key);
+		if (pos_key > 0)
 		{
 			insert(temp, pos);
 			break;
