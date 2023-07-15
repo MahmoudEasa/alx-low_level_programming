@@ -170,9 +170,9 @@ void check_hash_head_tail(shash_table_t *ht,
 		ht->stail = pos;
 	if (ht->shead && ht->stail)
 	{
-		current_hash = hash_djb2((unsigned char *)key);
-		hash_head = hash_djb2((unsigned char *)ht->shead->key);
-		hash_tail = hash_djb2((unsigned char *)ht->stail->key);
+		current_hash = hash_djb2((unsigned char *)&(*key));
+		hash_head = hash_djb2((unsigned char *)&(*(ht->shead->key)));
+		hash_tail = hash_djb2((unsigned char *)&(*(ht->stail->key)));
 
 		if (current_hash < hash_head)
 		{
