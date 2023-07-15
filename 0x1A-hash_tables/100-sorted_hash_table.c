@@ -162,7 +162,7 @@ int sallocate(shash_table_t *ht, unsigned long int index,
 void check_hash_head_tail(shash_table_t *ht,
 		shash_node_t *pos, const char *key)
 {
-	unsigned long int hash_head, hash_tail, current_hash;
+	int hash_head, hash_tail, current_hash;
 
 	if (!(ht->shead))
 		ht->shead = pos;
@@ -170,9 +170,9 @@ void check_hash_head_tail(shash_table_t *ht,
 		ht->stail = pos;
 	if (ht->shead && ht->stail)
 	{
-		current_hash = hash_djb2((unsigned char *)&(*key));
-		hash_head = hash_djb2((unsigned char *)&(*(ht->shead->key)));
-		hash_tail = hash_djb2((unsigned char *)&(*(ht->stail->key)));
+		current_hash = *key;
+		hash_head = *(ht->shead->key);
+		hash_tail = *(ht->stail->key);
 
 		if (current_hash < hash_head)
 		{
@@ -199,14 +199,14 @@ void check_hash_head_tail(shash_table_t *ht,
  */
 
 void add_node(shash_table_t *ht,
-		unsigned long int current_hash, shash_node_t *pos)
+		int current_hash, shash_node_t *pos)
 {
 	shash_node_t *temp;
 
 	temp = ht->shead;
 	while (temp)
 	{
-		if (current_hash < hash_djb2((unsigned char *)temp->key))
+		if (current_hash < *(temp->key))
 		{
 			insert(temp, pos);
 			break;

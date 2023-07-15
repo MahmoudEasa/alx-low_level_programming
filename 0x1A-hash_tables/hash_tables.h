@@ -96,7 +96,7 @@ int sfound_key(shash_node_t **pos, const char *key, const char *value);
 int sallocate(shash_table_t *ht, unsigned long int index,
 		const char *key, const char *value);
 void add_node(shash_table_t *ht,
-		unsigned long int current_hash, shash_node_t *pos);
+		int current_hash, shash_node_t *pos);
 
 #endif /* HASH_TABLES */
 
