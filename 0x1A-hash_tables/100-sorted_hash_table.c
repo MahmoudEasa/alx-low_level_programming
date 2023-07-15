@@ -186,23 +186,20 @@ void check_hash_head_tail(shash_table_t *ht,
 			ht->stail = pos;
 		}
 		else
-			add_node(ht, hash_head, pos);
+			add_node(ht, pos);
 	}
 }
 
 /**
  * add_node - add node inside list
  * @ht: the hash table
- * @current_hash: hash of current node
  * @pos: new node
  */
 
-void add_node(shash_table_t *ht,
-		int current_hash, shash_node_t *pos)
+void add_node(shash_table_t *ht, shash_node_t *pos)
 {
 	shash_node_t *temp;
 	int pos_key;
-	(void)current_hash;
 
 	temp = ht->shead;
 	while (temp)
