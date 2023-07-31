@@ -12,25 +12,31 @@
 
 size_t print_listint_safe(const listint_t *head)
 {
-	const listint_t *ptr = head, *next;
-	size_t count = 0;
+	const listint_t *ptr = head;
+	const listint_t *arr[1024];
+	size_t count = 0, i;
 
 	if (!head)
-		exit(98);
-
-	next = head->next;
-	while ((ptr && next && (next < ptr)))
 	{
+		printf("0\n");
+		exit(98);
+	}
+
+	while (ptr)
+	{
+		for (i = 0; i < count; i++)
+			if (arr[i] == ptr)
+			{
+				printf("-> [%p] %d\n", (void *)ptr, ptr->n);
+				return (count);
+			}
+
+		arr[count] = ptr;
+		count++;
+
 		printf("[%p] %d\n", (void *)ptr, ptr->n);
 		ptr = ptr->next;
-		next = next->next;
-		count++;
 	}
-	printf("[%p] %d\n", (void *)ptr, ptr->n);
-	count++;
-
-	if (next)
-		printf("-> [%p] %d\n", (void *)next, next->n);
 
 	return (count);
 }
