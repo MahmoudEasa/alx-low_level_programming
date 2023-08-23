@@ -9,14 +9,14 @@ $(NAME): $(OBJ)
 all: $(NAME) m.h
 
 clean:
-	$(RM) $(NAME) *~ .*~ #*#
+	$(RM) *~ $(NAME)
 
 oclean:
 	$(RM) $(OBJ)
 
-fclean: oclean clean
+fclean: clean oclean
 
-re: fclean all
+re: oclean all
 
 .PHONY: clean oclean fclean re
 
