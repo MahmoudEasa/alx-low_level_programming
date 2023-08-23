@@ -11,6 +11,9 @@ def island_perimeter(grid):
 
     if isinstance(grid, list) and all(isinstance(i, list) for i in grid):
         row = len(grid)
+        if not row:
+            return (0)
+
         col = len(grid[0])
 
         for r in range(row):
