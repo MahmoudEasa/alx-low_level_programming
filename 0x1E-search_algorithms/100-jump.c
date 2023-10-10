@@ -20,16 +20,16 @@ int jump_search(int *array, size_t size, int value)
 	if (!array || !size)
 		return (-1);
 
+	if (array[start] > value)
+	{
+		print(start, array[start], 0);
+		return (-1);
+	}
+
 	sqr = sqrt(size);
 
 	while (start < size)
 	{
-		if (array[start] > value)
-		{
-			print(start, array[start], 0);
-			return (-1);
-		}
-
 		end = start + sqr;
 		print(start, array[start], 0);
 		if ((array[end] >= value) || (end >= size))
