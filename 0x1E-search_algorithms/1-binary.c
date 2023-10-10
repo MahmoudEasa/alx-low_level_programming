@@ -12,10 +12,12 @@
 
 int binary_search(int *array, size_t size, int value)
 {
-	size_t start = 0, end = size - 1, i, mid;
+	size_t start = 0, end, i, mid;
 
-	if (!array || size <= 0)
+	if (!array || !size)
 		return (-1);
+
+	end = size - 1;
 
 	while (start <= end)
 	{
