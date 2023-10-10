@@ -32,7 +32,7 @@ int jump_search(int *array, size_t size, int value)
 	{
 		end = start + sqr;
 		print(start, array[start], 0);
-		if ((array[end] >= value) || (end >= size))
+		if ((array[end] >= value))
 		{
 			print(start, (int)end, 1);
 			for (; (start <= end && start < size); start++)
